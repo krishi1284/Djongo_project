@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>{% if product %}Edit{% else %}Add{% endif %} Product</title>
+</head>
+<body>
+    <h1>{% if product %}Edit{% else %}Add{% endif %} Product</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="product_name">Product Name:</label><br>
+        <input type="text" name="product_name" value="{{ product.product_name|default:'' }}"><br>
+
+        <label for="product_price">Product Price:</label><br>
+        <input type="number" name="product_price" value="{{ product.product_price|default:'' }}"><br>
+
+        <label for="quantity">Quantity:</label><br>
+        <input type="number" name="quantity" value="{{ product.quantity|default:'' }}"><br><br>
+
+        <button type="submit">{% if product %}Update{% else %}Add{% endif %} Product</button>
+    </form>
+    <a href="{% url 'product_list' %}">Back to list</a>
+</body>
+</html>
